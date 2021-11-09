@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "gamma02.mossfix.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mossfix.refmap.json",
+  "mixins": [
+    "MossMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
