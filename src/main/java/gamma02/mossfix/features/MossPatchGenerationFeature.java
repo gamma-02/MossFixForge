@@ -20,6 +20,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 
+
 public class MossPatchGenerationFeature extends Feature<VegetationPatchConfiguration>
 {
     public MossPatchGenerationFeature(Codec<VegetationPatchConfiguration> codec) {
