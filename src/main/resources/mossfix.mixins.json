@@ -4,6 +4,9 @@
   "package": "gamma02.mossfix.mixin",
   "compatibilityLevel": "JAVA_16",
   "refmap": "mossfix.refmap.json",
+  "server": [
+    "MossMixin"
+  ],
   "mixins": [
     "MossMixin"
   ],
