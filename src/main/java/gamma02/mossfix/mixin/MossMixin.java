@@ -1,6 +1,8 @@
 package gamma02.mossfix.mixin;
 
 import com.mojang.blaze3d.DontObfuscate;
+import gamma02.mossfix.MossConfiguredFeatures;
+import gamma02.mossfix.Mossfix;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.worldgen.Features;
 import net.minecraft.server.level.ServerLevel;
@@ -35,6 +37,6 @@ public class MossMixin
      */
     @Overwrite(remap = false)
     public void performBonemeal(ServerLevel p_153792_, Random p_153793_, BlockPos p_153794_, BlockState p_153795_) {
-        Feature.VEGETATION_PATCH.place(new FeaturePlaceContext<>(p_153792_, p_153792_.getChunkSource().getGenerator(), p_153793_, p_153794_.above(), Features.MOSS_PATCH_BONEMEAL.config()));
+        Mossfix.MOSS_PATCH_FEATURE.get().place(new FeaturePlaceContext<>(p_153792_, p_153792_.getChunkSource().getGenerator(), p_153793_, p_153794_.above(), Features.MOSS_PATCH_BONEMEAL.config()));
     }
 }

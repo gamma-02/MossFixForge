@@ -27,6 +27,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fmllegacy.RegistryObject;
@@ -52,12 +53,8 @@ public class Mossfix
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final DeferredRegister<Feature<?>> MOSS = DeferredRegister.create(ForgeRegistries.FEATURES, "mossfix");
-    public static final RegistryObject<Feature<VegetationPatchConfiguration>> MOSS_PATCH_FEATURE_10 = MOSS.register("moss_patch_feature", () -> new MossPatchGenerationFeature(VegetationPatchConfiguration.CODEC));
-    private static final RegistryObject<Feature<VegetationPatchConfiguration>> MOSS_PATCH_FEATURE = RegistryObject.of(new ResourceLocation("mossfix","moss_patch_feature"), ForgeRegistries.FEATURES);
-    public static final ConfiguredFeature<VegetationPatchConfiguration, ?> MOSS_PATCH = MOSS_PATCH_FEATURE.get().configured(new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE.getName(),
-                    new SimpleStateProvider(Blocks.MOSS_BLOCK.defaultBlockState()), () -> {
-                return MOSS_VEGETATION;
-            }, CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F));
+    public static final RegistryObject<Feature<VegetationPatchConfiguration>> MOSS_PATCH_FEATURE = MOSS.register("moss_patch_feature", () -> new MossPatchGenerationFeature(VegetationPatchConfiguration.CODEC));
+
 
 
     public Mossfix()
@@ -74,17 +71,17 @@ public class Mossfix
         MOSS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         MinecraftForge.EVENT_BUS.register(this);
-        Registry<ConfiguredFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_FEATURE;
-        Registry.register(registry, new ResourceLocation("moss_fix", "moss_patch_configured"), MOSS_PATCH);
+
 
 
     }
 
-    private void setup(final FMLCommonSetupEvent event)
+    private void setup(final FMLDedicatedServerSetupEvent event)
     {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        MossConfiguredFeatures.RegisterConfiguredFeatures();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -108,6 +105,7 @@ public class Mossfix
     {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+
 
     }
 
