@@ -146,10 +146,8 @@ public class MossPatchGenerationFeature extends Feature<VegetationPatchConfigura
     }
 
     public static boolean airSubstitute(BlockState state){
-        if(state.is(BlockTags.FLOWERS) || state.is(Blocks.GRASS) || state.is(Blocks.TALL_GRASS) || state.isAir() || state.is(Blocks.BIG_DRIPLEAF) || state.is(Blocks.BIG_DRIPLEAF_STEM) || state.is(Blocks.SMALL_DRIPLEAF)){
-            return true;
-        }else {
-            return false;
-        }
+        return state.is(BlockTags.FLOWERS) || state.is(Blocks.GRASS) || state.is(
+                Blocks.TALL_GRASS) || state.isAir() || state.is(Blocks.BIG_DRIPLEAF) || state.is(
+                Blocks.BIG_DRIPLEAF_STEM) || state.is(Blocks.SMALL_DRIPLEAF);
     }
 }
